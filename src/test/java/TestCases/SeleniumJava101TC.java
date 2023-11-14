@@ -9,15 +9,22 @@ import ModulePagePackage.SimpleForm;
 public class SeleniumJava101TC extends BaseDriverPage {
 
 	public static void TestCasesExecution(String browser) {
-		SetUpBrowser(browser);
-		SimpleFormPage();
-		DragandDropSliderPage();
-		InputFormSubmit();
-		TearDown();
+		// SetUpBrowser(browser);
+		try {
+			SimpleFormPage(browser);
+			DragandDropSliderPage(browser);
+			InputFormSubmit(browser);
+		} catch (Exception e) {
+			System.out.println("Error in running :  " + e);
+		}
+		System.out.println("End of TestCase");
+		// TearDown();
 
 	}
 
-	public static void SimpleFormPage() {
+	public static void SimpleFormPage(String browser) {
+
+		SetUpBrowser(browser);
 
 		// accessing Main page and click Submit-form-Demo
 		PageMain sfp = new PageMain(driver);
@@ -29,21 +36,28 @@ public class SeleniumJava101TC extends BaseDriverPage {
 		sf.EnterMessage();
 		sf.GetCheckedValueClick();
 		sf.MessageValidate();
+		TearDown();
 
 	}
 
-	public static void DragandDropSliderPage() {
+	public static void DragandDropSliderPage(String browser) {
+		SetUpBrowser(browser);
+
+		// accessing Main page and click Drag-&-Drop-slider
 		PageMain ddsp = new PageMain(driver);
 		ddsp.getMainPageUrl();
 		ddsp.DragAndDropClick();
 
 		DragDropSlider dds = new DragDropSlider(driver);
 		dds.draganddropValidate();
+		TearDown();
 
 	}
 
-	public static void InputFormSubmit() {
+	public static void InputFormSubmit(String browser) {
+		SetUpBrowser(browser);
 
+		// accessing Main page and click InputForm
 		PageMain ifsp = new PageMain(driver);
 		ifsp.getMainPageUrl();
 		ifsp.InputFormClick();
@@ -52,6 +66,7 @@ public class SeleniumJava101TC extends BaseDriverPage {
 		ifs.validateErrorMessage();
 		ifs.fillingFormdetails();
 		ifs.validateSubmissionMessage();
+		TearDown();
 
 	}
 

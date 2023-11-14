@@ -1,5 +1,7 @@
 package ModulePagePackage;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -18,6 +20,8 @@ public class PageMain {
 	// 3.Actions
 
 	public void getMainPageUrl() {
+		driver.manage().window().maximize();
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
 		driver.get("https://www.lambdatest.com/selenium-playground/");
 	}
 
