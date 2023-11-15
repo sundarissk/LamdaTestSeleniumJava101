@@ -9,17 +9,29 @@ import ModulePagePackage.SimpleForm;
 public class SeleniumJava101TC extends BaseDriverPage {
 
 	public static void TestCasesExecution(String browser) {
-		// SetUpBrowser(browser);
+
 		try {
 			SimpleFormPage(browser);
+
+		} catch (Exception e) {
+			System.out.println("Error in running :  " + e);
+		}
+		System.out.println("End of SimpleFormPage TestCase");
+
+		try {
+
 			DragandDropSliderPage(browser);
+		} catch (Exception e) {
+			System.out.println("Error in running :  " + e);
+		}
+		System.out.println("End of DragandDropSliderPage TestCase");
+
+		try {
 			InputFormSubmit(browser);
 		} catch (Exception e) {
 			System.out.println("Error in running :  " + e);
 		}
-		System.out.println("End of TestCase");
-		// TearDown();
-
+		System.out.println("End of InputFormSubmit TestCase");
 	}
 
 	public static void SimpleFormPage(String browser) {
@@ -71,10 +83,12 @@ public class SeleniumJava101TC extends BaseDriverPage {
 	}
 
 	public static void main(String[] args) {
-		TestCasesExecution("chrome");
-		TestCasesExecution("FF");
-		TestCasesExecution("edge");
-		TestCasesExecution("IE");
+		String[] browservalue = { "chrome", "FF", "edge", "IE" };
+
+		for (String browser : browservalue) {
+			TestCasesExecution(browser);
+			System.out.println("********************** " + browser.toString() + " Test End **************************");
+		}
 
 	}
 
